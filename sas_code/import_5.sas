@@ -324,7 +324,7 @@ data final.pums_5p_all_P; stop; run;
 %mend combine;
 
 %macro import_all();
-	%do i=1 %to 2;
+	%do i=1 %to 56;
 		%if &i.^=3 & &i.^=7 & &i.^=14 & &i.^=43 & &i.^=52 %then %do; 
 			%if &i.<10 %then %do;
 				%import_single(0&i.);
