@@ -1,3 +1,7 @@
+* Import PUMA 5% data;
+* by Yuancheng Zhang;
+* Aug 14, 2015;
+
 libname raw "../raw_file/revised/";
 libname ds "../dataset/";
 libname final "../final_dataset/";
