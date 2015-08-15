@@ -387,6 +387,122 @@ data final.pums_5p_all_P; stop; run;
 	run;
 %mend combine;
 
+%macro combine_all();
+	%put ~~~ combine ALL_HOS in final directory ~~~;
+	data final.pums_5p_all_H;
+		set final.pums_5p_all_H 
+			ds.pums_5p_01_H
+			ds.pums_5p_02_H
+			ds.pums_5p_04_H
+			ds.pums_5p_05_H
+			ds.pums_5p_06_H
+			ds.pums_5p_08_H
+			ds.pums_5p_09_H
+			ds.pums_5p_10_H
+			ds.pums_5p_11_H
+			ds.pums_5p_12_H
+			ds.pums_5p_13_H
+			ds.pums_5p_15_H
+			ds.pums_5p_16_H
+			ds.pums_5p_17_H
+			ds.pums_5p_18_H
+			ds.pums_5p_19_H
+			ds.pums_5p_20_H
+			ds.pums_5p_21_H
+			ds.pums_5p_22_H
+			ds.pums_5p_23_H
+			ds.pums_5p_24_H
+			ds.pums_5p_25_H
+			ds.pums_5p_26_H
+			ds.pums_5p_27_H
+			ds.pums_5p_28_H
+			ds.pums_5p_29_H
+			ds.pums_5p_30_H
+			ds.pums_5p_31_H
+			ds.pums_5p_32_H
+			ds.pums_5p_33_H
+			ds.pums_5p_34_H
+			ds.pums_5p_35_H
+			ds.pums_5p_36_H
+			ds.pums_5p_37_H
+			ds.pums_5p_38_H
+			ds.pums_5p_39_H
+			ds.pums_5p_40_H
+			ds.pums_5p_41_H
+			ds.pums_5p_42_H
+			ds.pums_5p_44_H
+			ds.pums_5p_45_H
+			ds.pums_5p_46_H
+			ds.pums_5p_47_H
+			ds.pums_5p_48_H
+			ds.pums_5p_49_H
+			ds.pums_5p_50_H
+			ds.pums_5p_51_H
+			ds.pums_5p_53_H
+			ds.pums_5p_54_H
+			ds.pums_5p_55_H
+			ds.pums_5p_56_H
+			;
+	run;
+
+	%put ~~~ combine ALL_POP in final directory ~~~;
+	data final.pums_5p_all_P;
+		set final.pums_5p_all_P 
+			ds.pums_5p_01_P
+			ds.pums_5p_02_P
+			ds.pums_5p_04_P
+			ds.pums_5p_05_P
+			ds.pums_5p_06_P
+			ds.pums_5p_08_P
+			ds.pums_5p_09_P
+			ds.pums_5p_10_P
+			ds.pums_5p_11_P
+			ds.pums_5p_12_P
+			ds.pums_5p_13_P
+			ds.pums_5p_15_P
+			ds.pums_5p_16_P
+			ds.pums_5p_17_P
+			ds.pums_5p_18_P
+			ds.pums_5p_19_P
+			ds.pums_5p_20_P
+			ds.pums_5p_21_P
+			ds.pums_5p_22_P
+			ds.pums_5p_23_P
+			ds.pums_5p_24_P
+			ds.pums_5p_25_P
+			ds.pums_5p_26_P
+			ds.pums_5p_27_P
+			ds.pums_5p_28_P
+			ds.pums_5p_29_P
+			ds.pums_5p_30_P
+			ds.pums_5p_31_P
+			ds.pums_5p_32_P
+			ds.pums_5p_33_P
+			ds.pums_5p_34_P
+			ds.pums_5p_35_P
+			ds.pums_5p_36_P
+			ds.pums_5p_37_P
+			ds.pums_5p_38_P
+			ds.pums_5p_39_P
+			ds.pums_5p_40_P
+			ds.pums_5p_41_P
+			ds.pums_5p_42_P
+			ds.pums_5p_44_P
+			ds.pums_5p_45_P
+			ds.pums_5p_46_P
+			ds.pums_5p_47_P
+			ds.pums_5p_48_P
+			ds.pums_5p_49_P
+			ds.pums_5p_50_P
+			ds.pums_5p_51_P
+			ds.pums_5p_53_P
+			ds.pums_5p_54_P
+			ds.pums_5p_55_P
+			ds.pums_5p_56_P
+			;
+	run;
+%mend combine_all;
+
 %macro import_all();
 	* from 1 to 56;
 	%do i=1 %to 56;
@@ -394,11 +510,11 @@ data final.pums_5p_all_P; stop; run;
 		%if &i.^=3 & &i.^=7 & &i.^=14 & &i.^=43 & &i.^=52 %then %do; 
 			%if &i.<10 %then %do;
 				%import_single(0&i.);
-				%combine(0&i.);
+				* %combine(0&i.);
 			%end;
 			%else %do;
 				%import_single(&i.);
-				%combine(&i.);
+				* %combine(&i.);
 			%end;
 		%end;
 	%end;
@@ -414,3 +530,5 @@ data final.pums_5p_all_P; stop; run;
 
 
 %import_all;
+
+%combine_all();
